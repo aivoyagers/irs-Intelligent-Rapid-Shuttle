@@ -9,12 +9,13 @@ public class irsVehicle implements java.io.Serializable {
 
 	static final long serialVersionUID = 1L;
 
-	@org.kie.api.definition.type.Label(value = "Capacity of Vehicle")
+	@org.kie.api.definition.type.Label("Capacity of Vehicle")
 	private int capacity;
-	@org.kie.api.definition.type.Label(value = "irsOffice")
-	private java.lang.String office;
-	@org.kie.api.definition.type.Label(value = "Next Student to be picked-up or dropped for same Vehicle")
-	private java.lang.String nextStudent;
+	@org.kie.api.definition.type.Label("Next Student to be picked-up or dropped for same Vehicle")
+	private irsStudent nextStudent;
+
+	@org.kie.api.definition.type.Label(value = "Office Location")
+	private com.irsspace.irs.irsLocation officeLocation;
 
 	public irsVehicle() {
 	}
@@ -27,27 +28,27 @@ public class irsVehicle implements java.io.Serializable {
 		this.capacity = capacity;
 	}
 
-	public java.lang.String getOffice() {
-		return this.office;
+	public com.irsspace.irs.irsLocation getOfficeLocation() {
+		return this.officeLocation;
 	}
 
-	public void setOffice(java.lang.String office) {
-		this.office = office;
+	public void setOfficeLocation(com.irsspace.irs.irsLocation officeLocation) {
+		this.officeLocation = officeLocation;
 	}
 
-	public java.lang.String getNextStudent() {
+	public com.irsspace.irs.irsStudent getNextStudent() {
 		return this.nextStudent;
 	}
 
-	public void setNextStudent(java.lang.String nextStudent) {
+	public void setNextStudent(com.irsspace.irs.irsStudent nextStudent) {
 		this.nextStudent = nextStudent;
 	}
 
-	public irsVehicle(int capacity, java.lang.String office,
-			java.lang.String nextStudent) {
+	public irsVehicle(int capacity, com.irsspace.irs.irsStudent nextStudent,
+			com.irsspace.irs.irsLocation officeLocation) {
 		this.capacity = capacity;
-		this.office = office;
 		this.nextStudent = nextStudent;
+		this.officeLocation = officeLocation;
 	}
 
 }

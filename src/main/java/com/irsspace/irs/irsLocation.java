@@ -16,9 +16,6 @@ public class irsLocation implements java.io.Serializable {
 	private java.lang.Double latitude;
 	@org.kie.api.definition.type.Label("Longitude")
 	private java.lang.Double longitude;
-	@org.kie.api.definition.type.Label("Postal Code")
-	private java.lang.Integer postalcode;
-
 	public irsLocation() {
 	}
 
@@ -46,20 +43,11 @@ public class irsLocation implements java.io.Serializable {
 		this.longitude = longitude;
 	}
 
-	public java.lang.Integer getPostalcode() {
-		return this.postalcode;
-	}
-
-	public void setPostalcode(java.lang.Integer postalcode) {
-		this.postalcode = postalcode;
-	}
-
 	public irsLocation(java.lang.String name, java.lang.Double latitude,
-			java.lang.Double longitude, java.lang.Integer postalcode) {
+			java.lang.Double longitude) {
 		this.name = name;
 		this.latitude = latitude;
 		this.longitude = longitude;
-		this.postalcode = postalcode;
 	}
 
 }

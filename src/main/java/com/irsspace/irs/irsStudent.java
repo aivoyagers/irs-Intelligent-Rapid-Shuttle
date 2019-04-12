@@ -5,6 +5,7 @@ package com.irsspace.irs;
  */
 
 @org.kie.api.definition.type.Label("irsStudent")
+@org.optaplanner.core.api.domain.entity.PlanningEntity(difficultyComparatorClass = irsStudent.DifficultyComparator.class)
 public class irsStudent implements java.io.Serializable {
 
 	static final long serialVersionUID = 1L;
@@ -14,14 +15,14 @@ public class irsStudent implements java.io.Serializable {
 	@org.kie.api.definition.type.Label("Next Student")
 	private com.irsspace.irs.irsStudent nextStudent;
 
-	@org.kie.api.definition.type.Label(value = "Student Location")
+	@org.kie.api.definition.type.Label("Student Location")
 	private com.irsspace.irs.irsLocation location;
 
-	@org.kie.api.definition.type.Label(value = "School where Student to be dropped")
-	private com.irsspace.irs.irsSchool school;
-
-	@org.kie.api.definition.type.Label(value = "Vehicle assigned")
+	@org.kie.api.definition.type.Label("Vehicle assigned")
 	private com.irsspace.irs.irsVehicle vehicle;
+
+	@org.kie.api.definition.type.Label(value = "Location of School where Student to be dropped")
+	private com.irsspace.irs.irsLocation schoolLocation;
 
 	public irsStudent() {
 	}
@@ -38,8 +39,7 @@ public class irsStudent implements java.io.Serializable {
 		return this.nextStudent;
 	}
 
-	public void setNextStudent(
-			com.irsspace.irs.irsStudent nextStudent) {
+	public void setNextStudent(com.irsspace.irs.irsStudent nextStudent) {
 		this.nextStudent = nextStudent;
 	}
 
@@ -47,40 +47,51 @@ public class irsStudent implements java.io.Serializable {
 		return this.location;
 	}
 
-	public void setLocation(
-			com.irsspace.irs.irsLocation location) {
+	public void setLocation(com.irsspace.irs.irsLocation location) {
 		this.location = location;
-	}
-
-	public com.irsspace.irs.irsSchool getSchool() {
-		return this.school;
-	}
-
-	public void setSchool(
-			com.irsspace.irs.irsSchool school) {
-		this.school = school;
 	}
 
 	public com.irsspace.irs.irsVehicle getVehicle() {
 		return this.vehicle;
 	}
 
-	public void setVehicle(
-			com.irsspace.irs.irsVehicle vehicle) {
+	public void setVehicle(com.irsspace.irs.irsVehicle vehicle) {
 		this.vehicle = vehicle;
 	}
 
-	public irsStudent(
-			java.lang.String name,
+	public com.irsspace.irs.irsLocation getSchoolLocation() {
+		return this.schoolLocation;
+	}
+
+	public void setSchoolLocation(com.irsspace.irs.irsLocation schoolLocation) {
+		this.schoolLocation = schoolLocation;
+	}
+
+	public irsStudent(java.lang.String name,
 			com.irsspace.irs.irsStudent nextStudent,
 			com.irsspace.irs.irsLocation location,
-			com.irsspace.irs.irsSchool school,
-			com.irsspace.irs.irsVehicle vehicle) {
+			com.irsspace.irs.irsVehicle vehicle,
+			com.irsspace.irs.irsLocation schoolLocation) {
 		this.name = name;
 		this.nextStudent = nextStudent;
 		this.location = location;
-		this.school = school;
 		this.vehicle = vehicle;
+		this.schoolLocation = schoolLocation;
+	}
+
+	@javax.annotation.Generated(value = {"org.optaplanner.workbench.screens.domaineditor.service.ComparatorDefinitionService"})
+	@org.optaplanner.workbench.screens.domaineditor.model.ComparatorDefinition
+	public static class DifficultyComparator
+			implements
+				java.io.Serializable,
+				java.util.Comparator<com.irsspace.irs.irsStudent> {
+		static final long serialVersionUID = 1L;
+
+		@javax.annotation.Generated(value = {"org.optaplanner.workbench.screens.domaineditor.service.ComparatorDefinitionService"})
+		public int compare(com.irsspace.irs.irsStudent o1,
+				com.irsspace.irs.irsStudent o2) {
+			return 0;
+		}
 	}
 
 }

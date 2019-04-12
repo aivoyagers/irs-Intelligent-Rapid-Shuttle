@@ -14,16 +14,14 @@ public class irsSolution implements java.io.Serializable {
 
 	@org.kie.api.definition.type.Label("Location List")
 	private java.util.List<com.irsspace.irs.irsLocation> locationList;
-	@org.kie.api.definition.type.Label("School List")
-	private java.util.List<com.irsspace.irs.irsSchool> schoolList;
 	@org.kie.api.definition.type.Label("Vehicle List")
 	private java.util.List<com.irsspace.irs.irsVehicle> vehicleList;
 	@org.kie.api.definition.type.Label("Student List")
 	private java.util.List<com.irsspace.irs.irsStudent> studentList;
 
-	@javax.annotation.Generated(value = {"org.optaplanner.workbench.screens.domaineditor.client.widgets.planner.PlannerDataObjectEditor"})
-	@javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter(value = org.optaplanner.persistence.jaxb.api.score.buildin.hardsoft.HardSoftScoreJaxbXmlAdapter.class)
-	@org.kie.api.definition.type.Label(value = "Generated Planner score field")
+	@javax.annotation.Generated({"org.optaplanner.workbench.screens.domaineditor.client.widgets.planner.PlannerDataObjectEditor"})
+	@javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter(org.optaplanner.persistence.jaxb.api.score.buildin.hardsoft.HardSoftScoreJaxbXmlAdapter.class)
+	@org.kie.api.definition.type.Label("Generated Planner score field")
 	@org.optaplanner.core.api.domain.solution.PlanningScore
 	private org.optaplanner.core.api.score.buildin.hardsoft.HardSoftScore score;
 
@@ -37,15 +35,6 @@ public class irsSolution implements java.io.Serializable {
 	public void setLocationList(
 			java.util.List<com.irsspace.irs.irsLocation> locationList) {
 		this.locationList = locationList;
-	}
-
-	public java.util.List<com.irsspace.irs.irsSchool> getSchoolList() {
-		return this.schoolList;
-	}
-
-	public void setSchoolList(
-			java.util.List<com.irsspace.irs.irsSchool> schoolList) {
-		this.schoolList = schoolList;
 	}
 
 	public java.util.List<com.irsspace.irs.irsVehicle> getVehicleList() {
@@ -77,12 +66,10 @@ public class irsSolution implements java.io.Serializable {
 
 	public irsSolution(
 			java.util.List<com.irsspace.irs.irsLocation> locationList,
-			java.util.List<com.irsspace.irs.irsSchool> schoolList,
 			java.util.List<com.irsspace.irs.irsVehicle> vehicleList,
 			java.util.List<com.irsspace.irs.irsStudent> studentList,
 			org.optaplanner.core.api.score.buildin.hardsoft.HardSoftScore score) {
 		this.locationList = locationList;
-		this.schoolList = schoolList;
 		this.vehicleList = vehicleList;
 		this.studentList = studentList;
 		this.score = score;
