@@ -49,5 +49,23 @@ public class irsLocation implements java.io.Serializable {
 		this.latitude = latitude;
 		this.longitude = longitude;
 	}
+	
+    public long getDistanceTo(irsLocation location) {
+        // Implementation specified by TSPLIB http://www2.iwr.uni-heidelberg.de/groups/comopt/software/TSPLIB95/
+        // Euclidean distance (Pythagorean theorem) - not correct when the surface is a sphere
+        double latitudeDifference = location.latitude - latitude;
+        double longitudeDifference = location.longitude - longitude;
+        double distance = Math.sqrt(
+            (latitudeDifference * latitudeDifference) + (longitudeDifference * longitudeDifference));
+        return (long) (distance * 1000.0 + 0.5);
+    }
+	
+	@Override
+    public String toString() {
+        if (name == null) {
+            return super.toString();
+        }
+        return name;
+    }
 
 }

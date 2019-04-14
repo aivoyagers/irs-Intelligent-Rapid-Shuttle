@@ -5,16 +5,23 @@ package com.irsspace.irs;
  */
 
 @org.kie.api.definition.type.Label("Vehicle")
-public class irsVehicle implements java.io.Serializable {
+@org.optaplanner.core.api.domain.entity.PlanningEntity
+public class irsVehicle
+		implements
+			java.io.Serializable,
+			com.irsspace.irs.irsPickupDropoffPoint {
 
 	static final long serialVersionUID = 1L;
 
 	@org.kie.api.definition.type.Label("Capacity of Vehicle")
 	private int capacity;
+
+	// Shadow variables
 	@org.kie.api.definition.type.Label("Next Student to be picked-up or dropped for same Vehicle")
+	@org.optaplanner.core.api.domain.variable.InverseRelationShadowVariable(sourceVariableName = "prevPickupDropoffPoint")
 	private irsStudent nextStudent;
 
-	@org.kie.api.definition.type.Label(value = "Office Location")
+	@org.kie.api.definition.type.Label("Office Location")
 	private com.irsspace.irs.irsLocation officeLocation;
 
 	public irsVehicle() {
@@ -36,12 +43,48 @@ public class irsVehicle implements java.io.Serializable {
 		this.officeLocation = officeLocation;
 	}
 
+	@Override
 	public com.irsspace.irs.irsStudent getNextStudent() {
 		return this.nextStudent;
 	}
 
+	@Override
 	public void setNextStudent(com.irsspace.irs.irsStudent nextStudent) {
 		this.nextStudent = nextStudent;
+	}
+
+	// ************************************************************************
+	// Complex methods
+	// ************************************************************************
+
+	@Override
+	public irsVehicle getVehicle() {
+		return this;
+	}
+
+	@Override
+	public irsLocation getLocation() {
+		return this.officeLocation;
+	}
+
+	/**
+	 * @param pickupDropoffPoint
+	 *            never null
+	 * @return a positive number, the distance multiplied by 1000 to avoid
+	 *         floating point arithmetic rounding errors
+	 */
+	public long getDistanceTo(
+			com.irsspace.irs.irsPickupDropoffPoint pickupDropoffPoint) {
+		return officeLocation.getDistanceTo(pickupDropoffPoint.getLocation());
+	}
+
+	@Override
+	public String toString() {
+		irsLocation location = getLocation();
+		if (location.getName() == null) {
+			return super.toString();
+		}
+		return location.getName() + "/" + super.toString();
 	}
 
 	public irsVehicle(int capacity, com.irsspace.irs.irsStudent nextStudent,

@@ -6,23 +6,32 @@ package com.irsspace.irs;
 
 @org.kie.api.definition.type.Label("irsStudent")
 @org.optaplanner.core.api.domain.entity.PlanningEntity(difficultyComparatorClass = irsStudent.DifficultyComparator.class)
-public class irsStudent implements java.io.Serializable {
+public class irsStudent implements java.io.Serializable, irsPickupDropoffPoint {
 
 	static final long serialVersionUID = 1L;
 
 	@org.kie.api.definition.type.Label("Student Name")
 	private java.lang.String name;
+
+	// Shadow variables
 	@org.kie.api.definition.type.Label("Next Student")
+	@org.optaplanner.core.api.domain.variable.InverseRelationShadowVariable(sourceVariableName = "prevPickupDropoffPoint")
 	private com.irsspace.irs.irsStudent nextStudent;
 
 	@org.kie.api.definition.type.Label("Student Location")
 	private com.irsspace.irs.irsLocation location;
 
 	@org.kie.api.definition.type.Label("Vehicle assigned")
+	@org.optaplanner.core.api.domain.variable.AnchorShadowVariable(sourceVariableName = "prevPickupDropoffPoint")
 	private com.irsspace.irs.irsVehicle vehicle;
 
-	@org.kie.api.definition.type.Label(value = "Location of School where Student to be dropped")
+	@org.kie.api.definition.type.Label("Location of School where Student to be dropped")
 	private com.irsspace.irs.irsLocation schoolLocation;
+
+	@org.kie.api.definition.type.Label("Previous Pickup Drop-off Point details")
+	@org.optaplanner.core.api.domain.variable.PlanningVariable(valueRangeProviderRefs = {
+			"vehicleRange", "studentRange"}, graphType = org.optaplanner.core.api.domain.variable.PlanningVariableGraphType.CHAINED)
+	private com.irsspace.irs.irsPickupDropoffPoint prevPickupDropoffPoint;
 
 	public irsStudent() {
 	}
@@ -35,14 +44,17 @@ public class irsStudent implements java.io.Serializable {
 		this.name = name;
 	}
 
+	@Override
 	public com.irsspace.irs.irsStudent getNextStudent() {
 		return this.nextStudent;
 	}
 
+	@Override
 	public void setNextStudent(com.irsspace.irs.irsStudent nextStudent) {
 		this.nextStudent = nextStudent;
 	}
 
+	@Override
 	public com.irsspace.irs.irsLocation getLocation() {
 		return this.location;
 	}
@@ -51,6 +63,7 @@ public class irsStudent implements java.io.Serializable {
 		this.location = location;
 	}
 
+	@Override
 	public com.irsspace.irs.irsVehicle getVehicle() {
 		return this.vehicle;
 	}
@@ -67,16 +80,68 @@ public class irsStudent implements java.io.Serializable {
 		this.schoolLocation = schoolLocation;
 	}
 
+	public com.irsspace.irs.irsPickupDropoffPoint getPrevPickupDropoffPoint() {
+		return this.prevPickupDropoffPoint;
+	}
+
+	public void setPrevPickupDropoffPoint(
+			com.irsspace.irs.irsPickupDropoffPoint prevPickupDropoffPoint) {
+		this.prevPickupDropoffPoint = prevPickupDropoffPoint;
+	}
+
+	// ************************************************************************
+	// Complex methods
+	// ************************************************************************
+
+	/**
+	 * @return a positive number, the distance multiplied by 1000 to avoid
+	 *         floating point arithmetic rounding errors Euclidean distance to
+	 *         be replaced with Google Distance by transit
+	 */
+	public long getDistanceFromPrevPickupDropoffPoint() {
+		if (prevPickupDropoffPoint == null) {
+			throw new IllegalStateException(
+					"This method must not be called when the prevPickupDropoffPoint ("
+							+ prevPickupDropoffPoint
+							+ ") is not initialized yet.");
+		}
+		return getDistanceFrom(prevPickupDropoffPoint);
+	}
+
+	/**
+	 * @param standstill
+	 *            never null
+	 * @return a positive number, the distance multiplied by 1000 to avoid
+	 *         floating point arithmetic rounding errors
+	 */
+	public long getDistanceFrom(irsPickupDropoffPoint pickupDropoffPoint) {
+		return pickupDropoffPoint.getLocation().getDistanceTo(location);
+	}
+
+	public long getDistanceTo(irsPickupDropoffPoint pickupDropoffPoint) {
+		return location.getDistanceTo(pickupDropoffPoint.getLocation());
+	}
+
+	@Override
+	public String toString() {
+		if (location.getName() == null) {
+			return super.toString();
+		}
+		return location.getName();
+	}
+
 	public irsStudent(java.lang.String name,
 			com.irsspace.irs.irsStudent nextStudent,
 			com.irsspace.irs.irsLocation location,
 			com.irsspace.irs.irsVehicle vehicle,
-			com.irsspace.irs.irsLocation schoolLocation) {
+			com.irsspace.irs.irsLocation schoolLocation,
+			com.irsspace.irs.irsPickupDropoffPoint prevPickupDropoffPoint) {
 		this.name = name;
 		this.nextStudent = nextStudent;
 		this.location = location;
 		this.vehicle = vehicle;
 		this.schoolLocation = schoolLocation;
+		this.prevPickupDropoffPoint = prevPickupDropoffPoint;
 	}
 
 	@javax.annotation.Generated(value = {"org.optaplanner.workbench.screens.domaineditor.service.ComparatorDefinitionService"})

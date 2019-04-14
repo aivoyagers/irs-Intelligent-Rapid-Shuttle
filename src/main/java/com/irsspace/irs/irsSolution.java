@@ -13,10 +13,13 @@ public class irsSolution implements java.io.Serializable {
 	static final long serialVersionUID = 1L;
 
 	@org.kie.api.definition.type.Label("Location List")
+	@org.optaplanner.core.api.domain.solution.drools.ProblemFactCollectionProperty
 	private java.util.List<com.irsspace.irs.irsLocation> locationList;
 	@org.kie.api.definition.type.Label("Vehicle List")
+	@org.optaplanner.core.api.domain.valuerange.ValueRangeProvider(id = "vehicleRange")
 	private java.util.List<com.irsspace.irs.irsVehicle> vehicleList;
 	@org.kie.api.definition.type.Label("Student List")
+	@org.optaplanner.core.api.domain.valuerange.ValueRangeProvider(id = "studentRange")
 	private java.util.List<com.irsspace.irs.irsStudent> studentList;
 
 	@javax.annotation.Generated({"org.optaplanner.workbench.screens.domaineditor.client.widgets.planner.PlannerDataObjectEditor"})
