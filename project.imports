@@ -25,6 +25,15 @@
       <import>
         <type>java.util.ArrayList</type>
       </import>
+      <import>
+        <type>com.irsspace.irs.irsSolution</type>
+      </import>
+      <import>
+        <type>com.irsspace.irs.irsStudent</type>
+      </import>
+      <import>
+        <type>com.irsspace.irs.irsVehicle</type>
+      </import>
     </imports>
   </imports>
   <version>1.0</version>

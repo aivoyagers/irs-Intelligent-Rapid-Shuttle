@@ -25,13 +25,13 @@ public class irsStudent implements java.io.Serializable, irsPickupDropoffPoint {
 	@org.optaplanner.core.api.domain.variable.AnchorShadowVariable(sourceVariableName = "prevPickupDropoffPoint")
 	private com.irsspace.irs.irsVehicle vehicle;
 
-	@org.kie.api.definition.type.Label("Location of School where Student to be dropped")
-	private com.irsspace.irs.irsLocation schoolLocation;
-
 	@org.kie.api.definition.type.Label("Previous Pickup Drop-off Point details")
 	@org.optaplanner.core.api.domain.variable.PlanningVariable(valueRangeProviderRefs = {
 			"vehicleRange", "studentRange"}, graphType = org.optaplanner.core.api.domain.variable.PlanningVariableGraphType.CHAINED)
 	private com.irsspace.irs.irsPickupDropoffPoint prevPickupDropoffPoint;
+
+	@org.kie.api.definition.type.Label("School where Student to be dropped")
+	private irsLocation school;
 
 	public irsStudent() {
 	}
@@ -70,14 +70,6 @@ public class irsStudent implements java.io.Serializable, irsPickupDropoffPoint {
 
 	public void setVehicle(com.irsspace.irs.irsVehicle vehicle) {
 		this.vehicle = vehicle;
-	}
-
-	public com.irsspace.irs.irsLocation getSchoolLocation() {
-		return this.schoolLocation;
-	}
-
-	public void setSchoolLocation(com.irsspace.irs.irsLocation schoolLocation) {
-		this.schoolLocation = schoolLocation;
 	}
 
 	public com.irsspace.irs.irsPickupDropoffPoint getPrevPickupDropoffPoint() {
@@ -130,18 +122,26 @@ public class irsStudent implements java.io.Serializable, irsPickupDropoffPoint {
 		return location.getName();
 	}
 
+	public com.irsspace.irs.irsLocation getSchool() {
+		return this.school;
+	}
+
+	public void setSchool(com.irsspace.irs.irsLocation school) {
+		this.school = school;
+	}
+
 	public irsStudent(java.lang.String name,
 			com.irsspace.irs.irsStudent nextStudent,
 			com.irsspace.irs.irsLocation location,
 			com.irsspace.irs.irsVehicle vehicle,
-			com.irsspace.irs.irsLocation schoolLocation,
-			com.irsspace.irs.irsPickupDropoffPoint prevPickupDropoffPoint) {
+			com.irsspace.irs.irsPickupDropoffPoint prevPickupDropoffPoint,
+			com.irsspace.irs.irsLocation school) {
 		this.name = name;
 		this.nextStudent = nextStudent;
 		this.location = location;
 		this.vehicle = vehicle;
-		this.schoolLocation = schoolLocation;
 		this.prevPickupDropoffPoint = prevPickupDropoffPoint;
+		this.school = school;
 	}
 
 	@javax.annotation.Generated(value = {"org.optaplanner.workbench.screens.domaineditor.service.ComparatorDefinitionService"})

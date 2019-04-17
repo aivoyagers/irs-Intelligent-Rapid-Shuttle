@@ -1,10 +1,10 @@
 package com.irsspace.irs;
 
-import org.optaplanner.core.api.domain.entity.PlanningEntity;
+//import org.optaplanner.core.api.domain.entity.PlanningEntity;
 //import org.optaplanner.core.api.domain.variable.InverseRelationShadowVariable;
 import com.irsspace.irs.irsLocation;
 
-@org.optaplanner.core.api.domain.entity.PlanningEntity
+//@org.optaplanner.core.api.domain.entity.PlanningEntity
 public interface irsPickupDropoffPoint {
 
     /**
@@ -20,7 +20,7 @@ public interface irsPickupDropoffPoint {
     /**
      * @return sometimes null
      */
-//  @InverseRelationShadowVariable(sourceVariableName = "prevPickupDropoffPoint")
+    //@InverseRelationShadowVariable(sourceVariableName = "prevPickupDropoffPoint")
     irsStudent getNextStudent();
     void setNextStudent(irsStudent nextStudent);
 

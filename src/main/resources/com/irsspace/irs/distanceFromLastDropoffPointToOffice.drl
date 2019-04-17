@@ -1,0 +1,21 @@
+package com.irsspace.irs;
+
+import com.irsspace.irs.irsSolution;
+import com.irsspace.irs.irsStudent;
+import com.irsspace.irs.irsVehicle;
+import com.irsspace.irs.irsLocation;
+import com.irsspace.irs.irsPickupDropoffPoint;
+import org.optaplanner.core.api.score.buildin.hardsoftlong.HardSoftLongScoreHolder;
+
+import java.lang.Number;
+
+rule "distanceFromLastDropoffPointToOfficeSoftConstraint"
+	dialect "java"
+	when
+		$student : irsStudent( prevPickupDropoffPoint != null )
+		  not irsStudent(prevPickupDropoffPoint == $student)
+	then
+	     irsVehicle $vehicle = $student.getVehicle();
+		System.out.println("Distance from last Student : "  + $student.getName() +  " " +  $student.getDistanceTo($vehicle));
+		scoreHolder.addSoftConstraintMatch(kcontext, - (int) $student.getDistanceTo($vehicle));
+end

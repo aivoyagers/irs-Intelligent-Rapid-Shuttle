@@ -1,0 +1,12 @@
+package com.irsspace.irs;
+
+import java.lang.Number;
+
+rule "distanceToPrevPickupDropoffPointSoftConstraint"
+	dialect "java"
+	when
+		$student : irsStudent( prevPickupDropoffPoint != ( null ) , $distanceFromPrevPickupDropoffPoint : distanceFromPrevPickupDropoffPoint)
+	then
+		System.out.println("Distance from prev pickup dropoff point for Student : " + $student.getName() + " " + $distanceFromPrevPickupDropoffPoint  );
+		scoreHolder.addSoftConstraintMatch(kcontext, - (int) $distanceFromPrevPickupDropoffPoint);
+end

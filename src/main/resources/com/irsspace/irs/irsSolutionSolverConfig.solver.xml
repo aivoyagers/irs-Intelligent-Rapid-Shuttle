@@ -1,0 +1,12 @@
+<solver xStreamId="1">
+  <scanAnnotatedClasses xStreamId="2"/>
+  <scoreDirectorFactory xStreamId="3"/>
+  <termination xStreamId="4">
+    <millisecondsSpentLimit>0</millisecondsSpentLimit>
+    <secondsSpentLimit>0</secondsSpentLimit>
+    <minutesSpentLimit>2</minutesSpentLimit>
+    <hoursSpentLimit>0</hoursSpentLimit>
+    <daysSpentLimit>0</daysSpentLimit>
+    <bestScoreFeasible>true</bestScoreFeasible>
+  </termination>
+</solver>

@@ -1,0 +1,14 @@
+package com.irsspace.irs;
+
+import java.lang.Number;
+
+rule "irsVehicleCapacityHardConstraints"
+	dialect "mvel"
+	when
+		$vehicle : irsVehicle( $capacity : capacity)
+		$totalCount : Number( intValue() > $capacity ) from accumulate ( $student : irsStudent( vehicle == $vehicle ),
+			count($student)) 
+	then
+		System.out.println("Executed Rule: " + drools.getRule().getName() + " :  number of students in Vehicle "  + $vehicle.getOfficeLocation().getName() + " is  "  +  $totalCount);
+		scoreHolder.addHardConstraintMatch(kcontext, $capacity - $totalCount);
+end

@@ -3,7 +3,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.irsspace</groupId>
-  <artifactId>IRS-RS-2019-01-19-IS1PT-GRP-aiVoyagers-irs-Intelligent-Rapid-Shuttle</artifactId>
+  <artifactId>irs-Intelligent-Rapid-Shuttle</artifactId>
   <version>1.0.0</version>
   <packaging>kjar</packaging>
   <name>irs-Intelligent-Rapid-Shuttle</name>
@@ -44,6 +44,12 @@
       <artifactId>kie-api</artifactId>
       <version>7.17.0.Final</version>
       <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.irsspace</groupId>
+      <artifactId>irs-Intelligent-Rapid-Shuttle</artifactId>
+      <version>1.0.0</version>
+      <scope>compile</scope>
     </dependency>
   </dependencies>
   <build>
