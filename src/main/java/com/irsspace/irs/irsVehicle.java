@@ -5,7 +5,6 @@ package com.irsspace.irs;
  */
 
 @org.kie.api.definition.type.Label("Vehicle")
-@org.optaplanner.core.api.domain.entity.PlanningEntity
 public class irsVehicle
 		implements
 			java.io.Serializable,
@@ -18,7 +17,6 @@ public class irsVehicle
 
 	// Shadow variables
 	@org.kie.api.definition.type.Label("Next Student to be picked-up or dropped for same Vehicle")
-	@org.optaplanner.core.api.domain.variable.InverseRelationShadowVariable(sourceVariableName = "prevPickupDropoffPoint")
 	private irsStudent nextStudent;
 
 	@org.kie.api.definition.type.Label("Office Location")
