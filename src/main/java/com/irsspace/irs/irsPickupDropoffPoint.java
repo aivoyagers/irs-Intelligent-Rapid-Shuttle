@@ -22,7 +22,7 @@ public interface irsPickupDropoffPoint {
      */
     //@InverseRelationShadowVariable(sourceVariableName = "prevPickupDropoffPoint")
 	@org.optaplanner.core.api.domain.variable.InverseRelationShadowVariable(sourceVariableName = "prevPickupDropoffPoint")    
-    com.irsspace.irs.irsStudent getNextStudent();
-    void setNextStudent(irsStudent nextStudent);
+    com.irsspace.irs.irsPickupDropoffParticulars getNextStudent();
+    void setNextStudent(irsPickupDropoffParticulars nextStudent);
 
 }

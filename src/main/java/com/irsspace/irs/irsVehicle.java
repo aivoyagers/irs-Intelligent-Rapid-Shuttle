@@ -17,7 +17,7 @@ public class irsVehicle
 
 	// Shadow variables
 	@org.kie.api.definition.type.Label("Next Student to be picked-up or dropped for same Vehicle")
-	private irsStudent nextStudent;
+	private irsPickupDropoffParticulars nextStudent;
 
 	@org.kie.api.definition.type.Label("Office Location")
 	private com.irsspace.irs.irsLocation officeLocation;
@@ -42,12 +42,12 @@ public class irsVehicle
 	}
 
 	@Override
-	public com.irsspace.irs.irsStudent getNextStudent() {
+	public com.irsspace.irs.irsPickupDropoffParticulars getNextStudent() {
 		return this.nextStudent;
 	}
 
 	@Override
-	public void setNextStudent(com.irsspace.irs.irsStudent nextStudent) {
+	public void setNextStudent(com.irsspace.irs.irsPickupDropoffParticulars nextStudent) {
 		this.nextStudent = nextStudent;
 	}
 
@@ -85,7 +85,7 @@ public class irsVehicle
 		return location.getName() + "/" + super.toString();
 	}
 
-	public irsVehicle(int capacity, com.irsspace.irs.irsStudent nextStudent,
+	public irsVehicle(int capacity, com.irsspace.irs.irsPickupDropoffParticulars nextStudent,
 			com.irsspace.irs.irsLocation officeLocation) {
 		this.capacity = capacity;
 		this.nextStudent = nextStudent;

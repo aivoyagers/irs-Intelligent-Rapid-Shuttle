@@ -6,9 +6,9 @@ rule "irsVehicleCapacityHardConstraints"
 	dialect "mvel"
 	when
 		$vehicle : irsVehicle( $capacity : capacity)
-		$totalCount : Number( intValue() > $capacity ) from accumulate ( $student : irsStudent( vehicle == $vehicle ),
+		$occupiedCapacity : Number( intValue() > $capacity ) from accumulate ( $student : irsPickupDropoffParticulars( vehicle == $vehicle , dropoffLocationName != null ),
 			count($student)) 
 	then
-		System.out.println("Executed Rule: " + drools.getRule().getName() + " :  number of students in Vehicle "  + $vehicle.getOfficeLocation().getName() + " is  "  +  $totalCount);
-		scoreHolder.addHardConstraintMatch(kcontext, $capacity - $totalCount);
+		System.out.println("Executed Rule: " + drools.getRule().getName() + " :  number of students in Vehicle "  + $vehicle.getOfficeLocation().getName() + " is  "  +  $occupiedCapacity);
+		scoreHolder.addHardConstraintMatch(kcontext, $capacity - $occupiedCapacity.intValue());
 end

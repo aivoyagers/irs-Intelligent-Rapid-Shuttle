@@ -19,13 +19,17 @@ public class irsSolution implements java.io.Serializable {
 	private java.util.List<com.irsspace.irs.irsVehicle> vehicleList;
 	@org.kie.api.definition.type.Label("Student List")
 	@org.optaplanner.core.api.domain.valuerange.ValueRangeProvider(id = "studentRange")
-	private java.util.List<com.irsspace.irs.irsStudent> studentList;
+	private java.util.List<com.irsspace.irs.irsPickupDropoffParticulars> studentList;
 
 	@javax.annotation.Generated({"org.optaplanner.workbench.screens.domaineditor.client.widgets.planner.PlannerDataObjectEditor"})
 	@javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter(org.optaplanner.persistence.jaxb.api.score.buildin.hardsoft.HardSoftScoreJaxbXmlAdapter.class)
 	@org.kie.api.definition.type.Label("Generated Planner score field")
 	@org.optaplanner.core.api.domain.solution.PlanningScore
 	private org.optaplanner.core.api.score.buildin.hardsoft.HardSoftScore score;
+
+	@org.kie.api.definition.type.Label("School List")
+	@org.optaplanner.core.api.domain.valuerange.ValueRangeProvider(id = "schoolRange")
+	private java.util.List<com.irsspace.irs.irsPickupDropoffParticulars> schoolList;
 
 	public irsSolution() {
 	}
@@ -48,12 +52,12 @@ public class irsSolution implements java.io.Serializable {
 		this.vehicleList = vehicleList;
 	}
 
-	public java.util.List<com.irsspace.irs.irsStudent> getStudentList() {
+	public java.util.List<com.irsspace.irs.irsPickupDropoffParticulars> getStudentList() {
 		return this.studentList;
 	}
 
 	public void setStudentList(
-			java.util.List<com.irsspace.irs.irsStudent> studentList) {
+			java.util.List<com.irsspace.irs.irsPickupDropoffParticulars> studentList) {
 		this.studentList = studentList;
 	}
 
@@ -66,15 +70,26 @@ public class irsSolution implements java.io.Serializable {
 		this.score = score;
 	}
 
+	public java.util.List<com.irsspace.irs.irsPickupDropoffParticulars> getSchoolList() {
+		return this.schoolList;
+	}
+
+	public void setSchoolList(
+			java.util.List<com.irsspace.irs.irsPickupDropoffParticulars> schoolList) {
+		this.schoolList = schoolList;
+	}
+
 	public irsSolution(
 			java.util.List<com.irsspace.irs.irsLocation> locationList,
 			java.util.List<com.irsspace.irs.irsVehicle> vehicleList,
-			java.util.List<com.irsspace.irs.irsStudent> studentList,
-			org.optaplanner.core.api.score.buildin.hardsoft.HardSoftScore score) {
+			java.util.List<com.irsspace.irs.irsPickupDropoffParticulars> studentList,
+			org.optaplanner.core.api.score.buildin.hardsoft.HardSoftScore score,
+			java.util.List<com.irsspace.irs.irsPickupDropoffParticulars> schoolList) {
 		this.locationList = locationList;
 		this.vehicleList = vehicleList;
 		this.studentList = studentList;
 		this.score = score;
+		this.schoolList = schoolList;
 	}
 
 }

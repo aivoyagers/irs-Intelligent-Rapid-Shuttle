@@ -7,6 +7,11 @@
     <minutesSpentLimit>2</minutesSpentLimit>
     <hoursSpentLimit>0</hoursSpentLimit>
     <daysSpentLimit>0</daysSpentLimit>
+    <unimprovedMillisecondsSpentLimit>0</unimprovedMillisecondsSpentLimit>
+    <unimprovedSecondsSpentLimit>20</unimprovedSecondsSpentLimit>
+    <unimprovedMinutesSpentLimit>0</unimprovedMinutesSpentLimit>
+    <unimprovedHoursSpentLimit>0</unimprovedHoursSpentLimit>
+    <unimprovedDaysSpentLimit>0</unimprovedDaysSpentLimit>
     <bestScoreFeasible>true</bestScoreFeasible>
   </termination>
 </solver>
