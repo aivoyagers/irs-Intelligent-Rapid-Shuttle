@@ -12,8 +12,6 @@ public class irsSolution implements java.io.Serializable {
 
 	static final long serialVersionUID = 1L;
 
-	@org.kie.api.definition.type.Label("Location List")
-	private java.util.List<com.irsspace.irs.irsLocation> locationList;
 	@org.kie.api.definition.type.Label("Vehicle List")
 	@org.optaplanner.core.api.domain.valuerange.ValueRangeProvider(id = "vehicleRange")
 	private java.util.List<com.irsspace.irs.irsVehicle> vehicleList;
@@ -31,16 +29,10 @@ public class irsSolution implements java.io.Serializable {
 	@org.optaplanner.core.api.domain.valuerange.ValueRangeProvider(id = "schoolRange")
 	private java.util.List<com.irsspace.irs.irsPickupDropoffParticulars> schoolList;
 
+	@org.kie.api.definition.type.Label("locationMatrixList")
+	private java.util.List<com.irsspace.irs.irsLocationMatrix> locationMatrixList;
+
 	public irsSolution() {
-	}
-
-	public java.util.List<com.irsspace.irs.irsLocation> getLocationList() {
-		return this.locationList;
-	}
-
-	public void setLocationList(
-			java.util.List<com.irsspace.irs.irsLocation> locationList) {
-		this.locationList = locationList;
 	}
 
 	public java.util.List<com.irsspace.irs.irsVehicle> getVehicleList() {
@@ -79,17 +71,26 @@ public class irsSolution implements java.io.Serializable {
 		this.schoolList = schoolList;
 	}
 
+	public java.util.List<com.irsspace.irs.irsLocationMatrix> getLocationMatrixList() {
+		return this.locationMatrixList;
+	}
+
+	public void setLocationMatrixList(
+			java.util.List<com.irsspace.irs.irsLocationMatrix> locationMatrixList) {
+		this.locationMatrixList = locationMatrixList;
+	}
+
 	public irsSolution(
-			java.util.List<com.irsspace.irs.irsLocation> locationList,
 			java.util.List<com.irsspace.irs.irsVehicle> vehicleList,
 			java.util.List<com.irsspace.irs.irsPickupDropoffParticulars> studentList,
 			org.optaplanner.core.api.score.buildin.hardsoft.HardSoftScore score,
-			java.util.List<com.irsspace.irs.irsPickupDropoffParticulars> schoolList) {
-		this.locationList = locationList;
+			java.util.List<com.irsspace.irs.irsPickupDropoffParticulars> schoolList,
+			java.util.List<com.irsspace.irs.irsLocationMatrix> locationMatrixList) {
 		this.vehicleList = vehicleList;
 		this.studentList = studentList;
 		this.score = score;
 		this.schoolList = schoolList;
+		this.locationMatrixList = locationMatrixList;
 	}
 
 }

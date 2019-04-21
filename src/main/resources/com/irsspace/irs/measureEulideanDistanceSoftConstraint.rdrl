@@ -2,7 +2,7 @@ package com.irsspace.irs;
 
 import java.lang.Number;
 
-rule "distanceToPrevPickupDropoffPointSoftConstraint"
+rule "measureEulideanDistanceSoftConstraint"
 	dialect "java"
 	when
 		$originOrDestination : irsPickupDropoffParticulars( prevPickupDropoffPoint != ( null ) , $distanceFromPrevPickupDropoffPoint : distanceFromPrevPickupDropoffPoint)
