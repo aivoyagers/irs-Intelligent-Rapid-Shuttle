@@ -5,7 +5,7 @@ import java.lang.Number;
 rule "isDropoffAfterPickupHardConstraint"
 	dialect "mvel"
 	when
-		$student : irsPickupDropoffParticulars( $dropoffLocationName : dropoffLocationName != null , $studentVehicle : vehicle, numberofLocationsToSchool == 0 )
+		$student : irsPickupDropoffParticulars( $dropoffLocationName : dropoffLocationName != null , $studentVehicle : vehicle, $distanceToSchoolScore : numberofLocationsToSchool == 0 )
 	then
 		System.out.println("Executed Rule: " + drools.getRule().getName() + " :  Dropoff location is not assigned to same vehicle for : " +   $student.getName());
 		scoreHolder.addHardConstraintMatch(kcontext, -10);

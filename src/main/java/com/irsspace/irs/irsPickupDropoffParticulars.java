@@ -103,18 +103,21 @@ public class irsPickupDropoffParticulars
 	public int getNumberofLocationsToSchool(){
 	    boolean conditionPassed = false;
 	    int numberofLocations = 0;
+	    int distanceToSchool = 0;
 	    com.irsspace.irs.irsPickupDropoffParticulars curStudent = this ;
 	    String schoolName = this.dropoffLocationName;
 	    while (curStudent.nextStudent != null) {
 	      curStudent = curStudent.nextStudent ;
+	      distanceToSchool += curStudent.getDistanceFromPrevPickupDropoffPoint(); 
 	      ++numberofLocations;  
 	      if (curStudent.name.equals(schoolName)) {
 	          conditionPassed = true;
+	          distanceToSchool = (int) (10.0 * (distanceToSchool/this.getDistanceFrom(curStudent))); 
 	          // System.out.println("isSchoolAfterStudent condition passed for " + this.name);
 	          break;
 	      }
 	    }
-	    return (conditionPassed ? numberofLocations : 0) ;
+	    return (conditionPassed ? distanceToSchool : 0) ;
 	}
 	
 	public long getDistanceFrom(irsPickupDropoffPoint pickupDropoffPoint) {

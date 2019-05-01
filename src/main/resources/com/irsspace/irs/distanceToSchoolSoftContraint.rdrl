@@ -1,0 +1,12 @@
+package com.irsspace.irs;
+
+import java.lang.Number;
+
+rule "distanceToSchoolSoftContraint"
+	dialect "mvel"
+	when
+		$student : irsPickupDropoffParticulars( $dropoffLocationName : dropoffLocationName != null , $studentVehicle : vehicle, $distanceToSchoolScore : numberofLocationsToSchool > 0 )
+	then
+		System.out.println("Executed Rule: " + drools.getRule().getName() + " :  distanceToSchool for : " +   $student.getName() + " is " + $distanceToSchoolScore);
+		scoreHolder.addSoftConstraintMatch(kcontext, - ($distanceToSchoolScore * 10));
+end
